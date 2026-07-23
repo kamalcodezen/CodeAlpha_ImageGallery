@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- Header Section -->
     <header>
         <div class="container">
             <h2>Explore Gallery</h2>
@@ -21,6 +21,7 @@
     <main>
         <section class="gallery">
             <div class="container">
+                <!-- Gallery Grid Container -->
                 <div class="gallery-grid">
 
                     <!-- Gallery Item 1 -->
@@ -96,15 +97,25 @@
                     </div>
 
                 </div>
+
+                <!-- Lightbox Modal Container -->
+                <div class="lightbox">
+                    <button class="close-btn" aria-label="Close Lightbox">&times;</button>
+                    <button class="prev-btn" aria-label="Previous Image">&#10094;</button>
+                    <img class="lightbox-image" src="" alt="Preview Image">
+                    <button class="next-btn" aria-label="Next Image">&#10095;</button>
+                </div>
+
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer>
         <p>&copy; 2026 Image Gallery. All rights reserved.</p>
     </footer>
 
+    <!-- JavaScript File -->
     <script src="./js/script.js"></script>
 </body>
 
