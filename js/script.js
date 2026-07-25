@@ -73,5 +73,7 @@ document.addEventListener("keydown", (event) => {
         showNextImage()
     } else if (event.key === "ArrowLeft") {
         showPrevImage()
+    } else if (event.key === "Escape") {
+        lightbox.classList.remove("active")
     }
 });
