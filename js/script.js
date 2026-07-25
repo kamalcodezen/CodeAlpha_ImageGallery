@@ -34,6 +34,7 @@ galleryItems.forEach((item, index) => {
 })
 
 
+// Lightbox next button
 nextBtn.addEventListener("click", () => {
     if (currentIndex === galleryItems.length - 1) {
         currentIndex = 0
@@ -42,5 +43,18 @@ nextBtn.addEventListener("click", () => {
     }
     const image = galleryItems[currentIndex].querySelector("img")
     lightboxImage.src = image.src;
-    console.log(currentIndex)
+    // console.log(currentIndex)
+})
+
+// previous button
+prevBtn.addEventListener("click", () => {
+    if (currentIndex === 0) {
+        currentIndex = galleryItems.length - 1
+    } else {
+        currentIndex--
+    }
+    
+    const image = galleryItems[currentIndex].querySelector("img")
+    lightboxImage.src = image.src;
+    // console.log(currentIndex)
 })
