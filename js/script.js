@@ -5,13 +5,9 @@ const lightboxImage = document.querySelector(".lightbox-image")
 const closeBtn = document.querySelector(".close-btn")
 const prevBtn = document.querySelector(".prev-btn")
 const nextBtn = document.querySelector(".next-btn")
-const item = document.querySelector(".gallery-item")
 
 
-// Lightbox open
-galleryItems[0].addEventListener("click", () => {
-    lightbox.classList.add("active")
-})
+
 
 // Lightbox close
 closeBtn.addEventListener("click", () => {
@@ -28,6 +24,7 @@ galleryItems.forEach((item, index) => {
 
         const image = item.querySelector("img")
         lightboxImage.src = image.src;
+        lightbox.classList.add("active")
     })
 })
 
@@ -69,6 +66,9 @@ prevBtn.addEventListener("click", () => {
 
 // Keyboard navigation
 document.addEventListener("keydown", (event) => {
+
+    if (!lightbox.classList.contains("active")) return;
+
     if (event.key === "ArrowRight") {
         showNextImage()
     } else if (event.key === "ArrowLeft") {
