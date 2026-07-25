@@ -19,10 +19,28 @@ closeBtn.addEventListener("click", () => {
 })
 
 
-galleryItems.forEach((item) => {
+let currentIndex = 0;
+
+// Lightbox display image
+galleryItems.forEach((item, index) => {
     item.addEventListener("click", () => {
+        currentIndex = index;
+
         const image = item.querySelector("img")
         lightboxImage.src = image.src
-        lightbox.classList.add("active")
+        lightbox.classList.add("active");
+        console.log(currentIndex)
     })
+})
+
+
+nextBtn.addEventListener("click", () => {
+    if (currentIndex === galleryItems.length - 1) {
+        currentIndex = 0
+    } else {
+        currentIndex++
+    }
+    const image = galleryItems[currentIndex].querySelector("img")
+    lightboxImage.src = image.src;
+    console.log(currentIndex)
 })
