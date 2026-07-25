@@ -27,14 +27,24 @@ let currentIndex = 0;
 function updateLightboxInfo() {
     const image = galleryItems[currentIndex].querySelector("img");
 
-    lightboxImage.src = image.src;
-    lightboxImage.alt = image.alt;
+    lightboxImage.classList.add("fade");
 
-    // Caption
-    lightboxCaption.textContent = image.alt;
+    setTimeout(() => {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
 
-    // Counter (01 / 06)
-    lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(galleryItems.length).padStart(2, "0")}`;
+        // Caption
+        lightboxCaption.textContent = image.alt;
+
+        // Counter (01 / 06)
+        lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(galleryItems.length).padStart(2, "0")}`;
+
+
+        lightboxImage.classList.remove("fade");
+    }, 300);
+
+
+
 }
 
 

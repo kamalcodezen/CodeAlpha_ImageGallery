@@ -164,6 +164,10 @@ header p {
 }
 
 
+.lightbox-image.fade {
+    opacity: 0;
+}
+
 
 /* Lightbox Info Bar (Counter & Title) */
 .lightbox-info {
