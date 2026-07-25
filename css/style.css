@@ -7,14 +7,14 @@
 }
 
 :root {
-    /* Cherry & Pink Theme Palette */
+    /* Theme Color Variables */
     --clr-primary: #5d1d1d;
     --clr-accent: #ff5100cf;
     --clr-dark: #1a0508;
     --clr-bg: #fff0f5;
     --clr-card: #ffffff;
     --clr-text: #bf113c;
-    --radius-lg: 1rem;
+    --radius-lg: 0.75rem;
     --transition: all 0.3s ease-in-out;
 }
 
@@ -64,7 +64,6 @@ header p {
 
 .gallery-grid {
     display: grid;
-    /* Responsive auto-fit grid */
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.25rem;
 }
@@ -131,7 +130,6 @@ header p {
     color: #ffd8df;
 }
 
-
 /* Lightbox Styling */
 .lightbox {
     position: fixed;
@@ -163,13 +161,11 @@ header p {
     object-fit: contain;
 }
 
-
 .lightbox-image.fade {
     opacity: 0;
 }
 
-
-/* Lightbox Info Bar (Counter & Title) */
+/* Lightbox Info Bar */
 .lightbox-info {
     position: relative;
     margin-top: 1.2rem;
@@ -186,8 +182,7 @@ header p {
     z-index: 1001;
 }
 
-
-/* Lightbox Controls Base */
+/* Lightbox Navigation Buttons */
 .close-btn,
 .prev-btn,
 .next-btn {
@@ -244,12 +239,11 @@ footer {
 }
 
 /* ===================================================
-    RESPONSIVE BREAKPOINTS (Mobile & Tablet Fixes)
+   Responsive Breakpoints (Mobile & Tablet Adjustments)
    =================================================== */
 
-/* Tablet & Mobile Screens (<= 768px) */
+/* Tablet and Small Screens (<= 768px) */
 @media (max-width: 768px) {
-
     .gallery-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 1rem;
@@ -283,9 +277,8 @@ footer {
     }
 }
 
-/* Small Mobile Screens (<= 480px) */
+/* Small Mobile Devices (<= 480px) */
 @media (max-width: 480px) {
-
     .gallery-item figcaption {
         opacity: 1;
         padding: 1rem;
@@ -293,6 +286,5 @@ footer {
 
     .lightbox-info {
         font-size: 0.8rem;
-
     }
 }
