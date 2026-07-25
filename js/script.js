@@ -12,14 +12,15 @@ const nextBtn = document.querySelector(".next-btn");
 const lightboxCaption = document.getElementById("lightboxCaption");
 const lightboxCounter = document.getElementById("lightboxCounter");
 
-
+// ===============================
+// Constants
+// ===============================
+const FADE_DURATION = 300;
 
 // ===============================
 // State
 // ===============================
 let currentIndex = 0;
-
-
 
 // ===============================
 // Update Lightbox Content
@@ -27,26 +28,33 @@ let currentIndex = 0;
 function updateLightboxInfo() {
     const image = galleryItems[currentIndex].querySelector("img");
 
+    // Fade Out
     lightboxImage.classList.add("fade");
 
     setTimeout(() => {
+        // Update Image
         lightboxImage.src = image.src;
         lightboxImage.alt = image.alt;
 
-        // Caption
+        // Update Caption
         lightboxCaption.textContent = image.alt;
 
-        // Counter (01 / 06)
-        lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(galleryItems.length).padStart(2, "0")}`;
+        // Update Counter
+        lightboxCounter.textContent =
+            `${String(currentIndex + 1).padStart(2, "0")} / ${String(galleryItems.length).padStart(2, "0")}`;
 
+        // Fade In after image is decoded
+        lightboxImage
+            .decode()
+            .then(() => {
+                lightboxImage.classList.remove("fade");
+            })
+            .catch(() => {
+                lightboxImage.classList.remove("fade");
+            });
 
-        lightboxImage.classList.remove("fade");
-    }, 300);
-
-
-
+    }, FADE_DURATION);
 }
-
 
 // ===============================
 // Open Lightbox
@@ -61,14 +69,12 @@ galleryItems.forEach((item, index) => {
     });
 });
 
-
 // ===============================
 // Close Lightbox
 // ===============================
 closeBtn.addEventListener("click", () => {
     lightbox.classList.remove("active");
 });
-
 
 // ===============================
 // Next Image
@@ -83,8 +89,6 @@ function showNextImage() {
     updateLightboxInfo();
 }
 
-
-
 // ===============================
 // Previous Image
 // ===============================
@@ -98,15 +102,11 @@ function showPrevImage() {
     updateLightboxInfo();
 }
 
-
-
 // ===============================
 // Button Navigation
 // ===============================
 nextBtn.addEventListener("click", showNextImage);
 prevBtn.addEventListener("click", showPrevImage);
-
-
 
 // ===============================
 // Keyboard Navigation
@@ -128,8 +128,6 @@ document.addEventListener("keydown", (event) => {
             break;
     }
 });
-
-
 
 // ===============================
 // Click Outside to Close
