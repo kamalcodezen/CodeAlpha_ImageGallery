@@ -7,19 +7,29 @@
 }
 
 :root {
-    --clr-dark: #0f172a;
-    --clr-bg: #f8fafc;
+    /* Cherry & Pink Theme Palette */
+    --clr-primary: #5d1d1d;
+    /* Deep Cherry Red */
+    --clr-accent: #ff5200;
+    /* Vibrant Orange-Red (Juiceables Color) */
+    --clr-dark: #1a0508;
+    /* Very Dark Cherry Black */
+    --clr-bg: #fff0f5;
+    /* Soft Pinkish White */
     --clr-card: #ffffff;
-    --clr-text: #64748b;
+    /* Pure White Card */
+    --clr-text: #bf113c;
+    /* Soft Muted Red-Gray */
     --radius-lg: 1rem;
     --transition: all 0.3s ease-in-out;
 }
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: var(--clr-bg);
+    background: linear-gradient(90deg, #9b274e 0%, #ffffff 30%, #ffffff 70%, #9b274e 100%);
     color: var(--clr-dark);
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 .container {
@@ -38,7 +48,13 @@ header {
 header h2 {
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
+    color: var(--clr-dark);
     margin-bottom: 0.5rem;
+}
+
+/* Accent Highlight Color for Header Text */
+header h2 span {
+    color: var(--clr-accent);
 }
 
 header p {
@@ -64,14 +80,16 @@ header p {
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--clr-card);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 25px -5px rgba(139, 0, 0, 0.08);
+    border: 1px solid rgba(252, 228, 236, 0.8);
     cursor: pointer;
     transition: var(--transition);
 }
 
 .gallery-item:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 30px -10px rgba(139, 0, 0, 0.2);
+    border-color: var(--clr-accent);
 }
 
 .gallery-item figure {
@@ -95,7 +113,7 @@ header p {
 .gallery-item figcaption {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(110, 0, 0, 0.157) 0%, transparent 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -116,14 +134,15 @@ header p {
 
 .gallery-item figcaption p {
     font-size: 0.85rem;
-    color: #cbd5e1;
+    color: #ffd8df;
 }
 
 /* Lightbox Styling */
 .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(15, 23, 42, 0.9);
+    /* ডার্ক চেরি ওভারলে মোডাল */
+    background: rgba(26, 5, 8, 0.92);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -143,7 +162,8 @@ header p {
     max-width: 85%;
     max-height: 80vh;
     border-radius: 0.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     object-fit: contain;
 }
 
@@ -152,9 +172,9 @@ header p {
 .prev-btn,
 .next-btn {
     position: absolute;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 2rem;
     padding: 0.5rem 1rem;
     cursor: pointer;
@@ -168,7 +188,9 @@ header p {
 .close-btn:hover,
 .prev-btn:hover,
 .next-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: var(--clr-accent);
+    color: #ffffff;
+    border-color: var(--clr-accent);
 }
 
 .close-btn {
@@ -192,5 +214,6 @@ footer {
     text-align: center;
     padding: 2rem;
     color: var(--clr-text);
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid rgba(139, 0, 0, 0.1);
+    background-color: rgba(252, 228, 236, 0.3);
 }
