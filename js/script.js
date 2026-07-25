@@ -65,3 +65,13 @@ prevBtn.addEventListener("click", () => {
     showPrevImage()
 })
 
+
+
+// Keyboard navigation
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+        showNextImage()
+    } else if (event.key === "ArrowLeft") {
+        showPrevImage()
+    }
+});
