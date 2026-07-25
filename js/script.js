@@ -77,3 +77,12 @@ document.addEventListener("keydown", (event) => {
         lightbox.classList.remove("active")
     }
 });
+
+
+// outside click to close lightbox
+lightbox.addEventListener("click", (event) => {
+
+    if (event.target === lightbox) {
+        lightbox.classList.remove("active")
+    }
+})
