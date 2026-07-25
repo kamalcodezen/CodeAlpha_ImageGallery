@@ -9,17 +9,11 @@
 :root {
     /* Cherry & Pink Theme Palette */
     --clr-primary: #5d1d1d;
-    /* Deep Cherry Red */
-    --clr-accent: #ff5200;
-    /* Vibrant Orange-Red (Juiceables Color) */
+    --clr-accent: #ff5100cf;
     --clr-dark: #1a0508;
-    /* Very Dark Cherry Black */
     --clr-bg: #fff0f5;
-    /* Soft Pinkish White */
     --clr-card: #ffffff;
-    /* Pure White Card */
     --clr-text: #bf113c;
-    /* Soft Muted Red-Gray */
     --radius-lg: 1rem;
     --transition: all 0.3s ease-in-out;
 }
@@ -41,38 +35,38 @@ body {
 
 /* Header Section */
 header {
-    padding-block: clamp(3rem, 6vw, 5rem);
+    padding-block: clamp(2.5rem, 5vw, 4rem);
     text-align: center;
 }
 
 header h2 {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.8rem, 5vw, 3rem);
     font-weight: 700;
     color: var(--clr-dark);
     margin-bottom: 0.5rem;
 }
 
-/* Accent Highlight Color for Header Text */
 header h2 span {
     color: var(--clr-accent);
 }
 
 header p {
     color: var(--clr-text);
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
     max-width: 36rem;
     margin-inline: auto;
 }
 
 /* Gallery Layout */
 .gallery {
-    padding-bottom: 5rem;
+    padding-bottom: 4rem;
 }
 
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    /* Responsive auto-fit grid */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
 }
 
 .gallery-item {
@@ -113,7 +107,7 @@ header p {
 .gallery-item figcaption {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(110, 0, 0, 0.157) 0%, transparent 100%);
+    background: linear-gradient(to top, rgba(93, 29, 29, 0.391) 0%, transparent 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -137,20 +131,22 @@ header p {
     color: #ffd8df;
 }
 
+
 /* Lightbox Styling */
 .lightbox {
     position: fixed;
     inset: 0;
-    /* ডার্ক চেরি ওভারলে মোডাল */
-    background: rgba(26, 5, 8, 0.92);
-    backdrop-filter: blur(8px);
+    background: rgba(26, 5, 8, 0.94);
+    backdrop-filter: blur(10px);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     opacity: 0;
     pointer-events: none;
     transition: var(--transition);
+    padding: 1rem;
 }
 
 .lightbox.active {
@@ -159,30 +155,49 @@ header p {
 }
 
 .lightbox-image {
-    max-width: 85%;
-    max-height: 80vh;
+    max-width: 90%;
+    max-height: 70vh;
     border-radius: 0.5rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.15);
     object-fit: contain;
 }
 
-/* Lightbox Controls */
+
+
+/* Lightbox Info Bar (Counter & Title) */
+.lightbox-info {
+    position: relative;
+    margin-top: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.5rem 1.25rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    color: #ffffff;
+    font-size: 0.9rem;
+    z-index: 1001;
+}
+
+
+/* Lightbox Controls Base */
 .close-btn,
 .prev-btn,
 .next-btn {
     position: absolute;
     background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
     cursor: pointer;
     border-radius: 50%;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1002;
 }
 
 .close-btn:hover,
@@ -194,19 +209,25 @@ header p {
 }
 
 .close-btn {
-    top: 2rem;
-    right: 2rem;
-    width: 45px;
-    height: 45px;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
     font-size: 1.5rem;
 }
 
 .prev-btn {
     left: 2rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
 }
 
 .next-btn {
     right: 2rem;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
 }
 
 /* Footer Section */
@@ -216,4 +237,58 @@ footer {
     color: var(--clr-text);
     border-top: 1px solid rgba(139, 0, 0, 0.1);
     background-color: rgba(252, 228, 236, 0.3);
+}
+
+/* ===================================================
+    RESPONSIVE BREAKPOINTS (Mobile & Tablet Fixes)
+   =================================================== */
+
+/* Tablet & Mobile Screens (<= 768px) */
+@media (max-width: 768px) {
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+
+    .prev-btn {
+        left: 0.8rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .next-btn {
+        right: 0.8rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .close-btn {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+
+    .lightbox-image {
+        max-width: 95%;
+        max-height: 65vh;
+    }
+}
+
+/* Small Mobile Screens (<= 480px) */
+@media (max-width: 480px) {
+
+    .gallery-item figcaption {
+        opacity: 1;
+        padding: 1rem;
+    }
+
+    .lightbox-info {
+        font-size: 0.8rem;
+
+    }
 }
