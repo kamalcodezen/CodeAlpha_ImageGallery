@@ -1,88 +1,131 @@
+// ===============================
+// DOM Elements
+// ===============================
+const galleryItems = document.querySelectorAll(".gallery-item");
+const lightbox = document.querySelector(".lightbox");
+const lightboxImage = document.querySelector(".lightbox-image");
 
-const galleryItems = document.querySelectorAll('.gallery-item');
-const lightbox = document.querySelector(".lightbox")
-const lightboxImage = document.querySelector(".lightbox-image")
-const closeBtn = document.querySelector(".close-btn")
-const prevBtn = document.querySelector(".prev-btn")
-const nextBtn = document.querySelector(".next-btn")
+const closeBtn = document.querySelector(".close-btn");
+const prevBtn = document.querySelector(".prev-btn");
+const nextBtn = document.querySelector(".next-btn");
 
-
-
-
-// Lightbox close
-closeBtn.addEventListener("click", () => {
-    lightbox.classList.remove("active")
-})
+const lightboxCaption = document.getElementById("lightboxCaption");
+const lightboxCounter = document.getElementById("lightboxCounter");
 
 
+
+// ===============================
+// State
+// ===============================
 let currentIndex = 0;
 
-// Lightbox display image
+
+
+// ===============================
+// Update Lightbox Content
+// ===============================
+function updateLightboxInfo() {
+    const image = galleryItems[currentIndex].querySelector("img");
+
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+
+    // Caption
+    lightboxCaption.textContent = image.alt;
+
+    // Counter (01 / 06)
+    lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(galleryItems.length).padStart(2, "0")}`;
+}
+
+
+// ===============================
+// Open Lightbox
+// ===============================
 galleryItems.forEach((item, index) => {
     item.addEventListener("click", () => {
         currentIndex = index;
 
-        const image = item.querySelector("img")
-        lightboxImage.src = image.src;
-        lightbox.classList.add("active")
-    })
-})
+        updateLightboxInfo();
 
-// Lightbox next image function
+        lightbox.classList.add("active");
+    });
+});
+
+
+// ===============================
+// Close Lightbox
+// ===============================
+closeBtn.addEventListener("click", () => {
+    lightbox.classList.remove("active");
+});
+
+
+// ===============================
+// Next Image
+// ===============================
 function showNextImage() {
     if (currentIndex === galleryItems.length - 1) {
-        currentIndex = 0
+        currentIndex = 0;
     } else {
-        currentIndex++
+        currentIndex++;
     }
 
-    const image = galleryItems[currentIndex].querySelector("img")
-    lightboxImage.src = image.src;
+    updateLightboxInfo();
 }
 
-// Lightbox previous image function
+
+
+// ===============================
+// Previous Image
+// ===============================
 function showPrevImage() {
     if (currentIndex === 0) {
-        currentIndex = galleryItems.length - 1
+        currentIndex = galleryItems.length - 1;
     } else {
         currentIndex--;
     }
-    const image = galleryItems[currentIndex].querySelector("img")
-    lightboxImage.src = image.src;
+
+    updateLightboxInfo();
 }
 
 
-// Lightbox next button
-nextBtn.addEventListener("click", () => {
-    showNextImage()
-})
 
-// previous button
-prevBtn.addEventListener("click", () => {
-    showPrevImage()
-})
+// ===============================
+// Button Navigation
+// ===============================
+nextBtn.addEventListener("click", showNextImage);
+prevBtn.addEventListener("click", showPrevImage);
 
 
 
-// Keyboard navigation
+// ===============================
+// Keyboard Navigation
+// ===============================
 document.addEventListener("keydown", (event) => {
-
     if (!lightbox.classList.contains("active")) return;
 
-    if (event.key === "ArrowRight") {
-        showNextImage()
-    } else if (event.key === "ArrowLeft") {
-        showPrevImage()
-    } else if (event.key === "Escape") {
-        lightbox.classList.remove("active")
+    switch (event.key) {
+        case "ArrowRight":
+            showNextImage();
+            break;
+
+        case "ArrowLeft":
+            showPrevImage();
+            break;
+
+        case "Escape":
+            lightbox.classList.remove("active");
+            break;
     }
 });
 
 
-// outside click to close lightbox
-lightbox.addEventListener("click", (event) => {
 
+// ===============================
+// Click Outside to Close
+// ===============================
+lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) {
-        lightbox.classList.remove("active")
+        lightbox.classList.remove("active");
     }
-})
+});
