@@ -27,34 +27,41 @@ galleryItems.forEach((item, index) => {
         currentIndex = index;
 
         const image = item.querySelector("img")
-        lightboxImage.src = image.src
-        lightbox.classList.add("active");
-        console.log(currentIndex)
+        lightboxImage.src = image.src;
     })
 })
 
-
-// Lightbox next button
-nextBtn.addEventListener("click", () => {
+// Lightbox next image function
+function showNextImage() {
     if (currentIndex === galleryItems.length - 1) {
         currentIndex = 0
     } else {
         currentIndex++
     }
+
     const image = galleryItems[currentIndex].querySelector("img")
     lightboxImage.src = image.src;
-    // console.log(currentIndex)
+}
+
+// Lightbox previous image function
+function showPrevImage() {
+    if (currentIndex === 0) {
+        currentIndex = galleryItems.length - 1
+    } else {
+        currentIndex--;
+    }
+    const image = galleryItems[currentIndex].querySelector("img")
+    lightboxImage.src = image.src;
+}
+
+
+// Lightbox next button
+nextBtn.addEventListener("click", () => {
+    showNextImage()
 })
 
 // previous button
 prevBtn.addEventListener("click", () => {
-    if (currentIndex === 0) {
-        currentIndex = galleryItems.length - 1
-    } else {
-        currentIndex--
-    }
-    
-    const image = galleryItems[currentIndex].querySelector("img")
-    lightboxImage.src = image.src;
-    // console.log(currentIndex)
+    showPrevImage()
 })
+
