@@ -11,3 +11,9 @@ const nextBtn = document.querySelector(".next-btn")
 galleryItems[0].addEventListener("click", () => {
     lightbox.classList.add("active")
 })
+
+
+closeBtn.addEventListener("click", () => {
+    lightbox.classList.remove("active")
+})
+
